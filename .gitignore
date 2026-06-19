@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# uv
+# (uv.lock SÍ se versiona; no lo ignoramos)
+
+# Entorno
+.env
+.env.local
+
+# Datos / volúmenes locales
+volumes/
+*.log
+
+# Manual de DnD (material con copyright + binario pesado): no versionar
+data/*.pdf
+
+# SO / editores
+.DS_Store
+.idea/
+.vscode/

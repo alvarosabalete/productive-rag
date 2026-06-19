@@ -1,0 +1,14 @@
+# Normaliza los finales de línea: en el repositorio SIEMPRE se guardan como LF.
+# Evita el ruido de "LF will be replaced by CRLF" y mantiene coherencia
+# entre Windows y los contenedores Linux.
+* text=auto eol=lf
+
+# Scripts que se ejecutan dentro de contenedores Linux: forzar LF SIEMPRE.
+# Con CRLF, bash falla con "bad interpreter: /bin/bash^M".
+*.sh text eol=lf
+
+# Ficheros binarios: que Git no los toque nunca.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.ico binary

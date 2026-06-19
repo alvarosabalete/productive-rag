@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG · Manual del Jugador DnD 5e</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>🐉 Oráculo del Manual del Jugador</h1>
+    <p class="subtitle">Pregunta lo que quieras sobre las reglas de DnD 5e.</p>
+
+    <section class="status">
+      <span>Estado del servicio:</span>
+      <strong id="health">comprobando…</strong>
+    </section>
+
+    <section class="chat" id="chat"></section>
+
+    <form id="chat-form" class="chat-form">
+      <input id="question" type="text" placeholder="¿Cómo funciona la ventaja en una tirada?" autocomplete="off" />
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
