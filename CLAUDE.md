@@ -72,10 +72,22 @@ docker compose logs -f api   # logs de la API
 docker compose down          # parar (conserva datos)
 docker compose down -v       # parar y BORRAR volúmenes (resetea BBDD/S3)
 
+# Migraciones e ingesta: corren DENTRO del contenedor (como en producción)
+# Las migraciones se aplican solas al arrancar 'api' (alembic upgrade head en el
+# entrypoint). Para ejecutarlas o inspeccionarlas a mano:
+docker compose exec api uv run alembic upgrade head
+docker compose exec api uv run alembic current
+docker compose exec api uv run python scripts/ingest.py          # ingesta del manual
+docker compose exec api uv run python scripts/ingest.py --force  # borra y recarga
+
 # Inspeccionar LocalStack
 docker compose exec localstack awslocal s3 ls s3://dnd-manuals
 docker compose exec localstack awslocal secretsmanager list-secrets
 ```
+
+> Nota: Alembic e ingesta se ejecutan dentro de `api` (red interna, hosts
+> `postgres`/`localstack`). El `.env` con `localhost` solo lo usan procesos
+> lanzados desde el host (p. ej. `uv run pytest`).
 
 Verificación rápida: http://localhost:8080/api/health · docs: `/api/docs`
 

@@ -23,7 +23,18 @@ COPY README.md ./README.md
 COPY src ./src
 RUN uv sync --frozen --no-dev
 
+# 3) Migraciones, scripts e ingesta: la imagen es autocontenida (todo lo que el
+#    contenedor necesita para migrar/ingestar va dentro de ella).
+COPY alembic.ini ./alembic.ini
+COPY migrations ./migrations
+COPY scripts ./scripts
+COPY docker-entrypoint.sh ./docker-entrypoint.sh
+RUN chmod +x ./docker-entrypoint.sh
+
 EXPOSE 8000
+
+# El entrypoint aplica las migraciones y luego lanza el CMD (uvicorn).
+ENTRYPOINT ["./docker-entrypoint.sh"]
 
 # Varios workers para concurrencia; FastAPI es async dentro de cada worker.
 CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
