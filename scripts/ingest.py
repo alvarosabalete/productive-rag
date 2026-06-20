@@ -8,9 +8,9 @@ Pipeline síncrono y manual (sin SQS/Lambda):
       -> OpenAI embeddings (text-embedding-3-small) en lotes
       -> INSERT en la tabla documents (pgvector)
 
-Uso:
-    uv run python scripts/ingest.py            # carga si la tabla está vacía
-    uv run python scripts/ingest.py --force    # borra y recarga aunque haya datos
+Uso (dentro del contenedor, como en producción):
+    docker compose exec api uv run python scripts/ingest.py          # carga si vacía
+    docker compose exec api uv run python scripts/ingest.py --force  # borra y recarga
 
 Idempotencia (decisión 2A): borrar y recargar. Si la tabla ya tiene filas, el
 script aborta salvo que se pase --force, para no re-gastar en embeddings de OpenAI

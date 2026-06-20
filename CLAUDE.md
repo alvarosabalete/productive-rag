@@ -133,7 +133,7 @@ ninguna referencia que lo haga figurar como autor, contribuidor o colaborador.
 ## Roadmap
 
 - [x] **F0** Andamiaje: estructura, docker-compose, /health.
-- [ ] **F1** Datos: Alembic + extensión pgvector, cliente S3/Secrets, script de ingesta.
+- [x] **F1** Datos: Alembic + extensión pgvector, cliente S3/Secrets, script de ingesta.
 - [ ] **F2** RAG core: retriever + `/chat`, memoria Redis.
 - [ ] **F3** Auth/Authz: usuarios, JWT, aislamiento de historial.
 - [ ] **F4** Concurrencia y seguridad: workers, rate limiting, pool tuning, CORS/headers.
